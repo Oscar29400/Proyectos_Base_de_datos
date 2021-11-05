@@ -64,13 +64,22 @@ public class Conexion {
 	public static void jedi() throws SQLException {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/starwars?","star","wars");
 		Statement st = con.createStatement();
-		ResultSet jedi = st.executeQuery ("Select name "
+		ResultSet columnas = st.executeQuery ("SELECT column_name FROM information_schema.columns where table_name='characters'");
+		int numero= 1;
+		while (columnas.next()) {
+			numero++;
+		}
+		ResultSet jedi = st.executeQuery ("Select * "
 				+ "FROM characters charac "
 				+ "join character_affiliations characaf on charac.id = characaf.id_character "
 				+ "join affiliations aff on characaf.id_affiliation = aff.id where characaf.id_affiliation = 1");
 		while (jedi.next()) {
-			System.out.println("Jedi: "+jedi.getString(1));
-		}
+			System.out.print("Jedi: ");
+			for (int i = 1; i < numero; i++) {
+			System.out.print(jedi.getString(i)+ " | ");
+			}
+			System.out.println();
+			}
 	}
 	public static void muertos() throws SQLException {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/starwars?","star","wars");
