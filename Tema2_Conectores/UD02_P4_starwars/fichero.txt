@@ -1,0 +1,68 @@
+
+
+NOMBRE TABLA: affiliations
+Clave primaria: id
+Columnas: 2
+id - INT
+affiliation - VARCHAR
+
+NOMBRE TABLA: characters
+Clave primaria: id
+Columnas: 13
+id - INT
+name - TEXT
+height - INT
+mass - FLOAT
+hair_color - TEXT
+skin_color - TEXT
+eye_color - TEXT
+birth_year - TEXT
+gender - TEXT
+planet_id - INT
+created_date - TIMESTAMP
+updated_date - TIMESTAMP
+url - TEXT
+
+NOMBRE TABLA: character_affiliations
+Clave primaria: id_character
+Columnas: 2
+id_character - INT
+id_affiliation - INT
+
+NOMBRE TABLA: character_films
+Clave primaria: id_film
+Columnas: 2
+id_character - INT
+id_film - INT
+
+NOMBRE TABLA: deaths
+Clave primaria: id
+Columnas: 4
+id - INT
+id_character - INT
+id_killer - INT
+id_film - INT
+
+NOMBRE TABLA: films
+Clave primaria: id
+Columnas: 3
+id - INT
+episode - VARCHAR
+title - VARCHAR
+
+NOMBRE TABLA: planets
+Clave primaria: id
+Columnas: 13
+id - INT
+name - TEXT
+rotation_period - INT
+orbital_period - INT
+diameter - INT
+climate - TEXT
+gravity - TEXT
+terrain - TEXT
+surface_water - TEXT
+population - BIGINT
+created_date - TIMESTAMP
+updated_date - TIMESTAMP
+url - TEXT
