@@ -16,6 +16,10 @@ public class SessionFactoryUtil {
 		SessionFactory sesionFactoria = cfg.buildSessionFactory(
 				new StandardServiceRegistryBuilder().configure().build());
 		Session sesion = sesionFactoria.openSession();
+		Ejercicio1(sesion);
+		Ejercicio2(sesion);
+		Ejercicio3(sesion);
+		Ejercicio4_1(sesion);
 		Ejercicio4_2(sesion);
 		sesion.close();
 
@@ -28,7 +32,7 @@ public class SessionFactoryUtil {
 	}
 
 	static void Ejercicio2(Session s) {
-		System.out.println("Ejercicio 2: ");
+		System.out.println("\nEjercicio 2: ");
 		ScrollableResults sc = s.createQuery("from Person AS p, Course AS c where p.firstName not in (select p.firstName from p.courses) group by p.id order by p.lastName ").scroll();
 		while (sc.next()) {
 			Person p = (Person) sc.get(0);
@@ -40,7 +44,7 @@ public class SessionFactoryUtil {
 
 	}
 	static void Ejercicio3(Session s) {
-		System.out.println("Ejercicio 3: ");
+		System.out.println("\nEjercicio 3: ");
 		List<HousePoints> persona1 = s.createQuery("from HousePoints h "
 				+ "where h.personByReceiver.firstName in (:NameHarry, :NameRon, :NameHermione)")
 				.setParameter("NameHarry", "Harry").setParameter("NameRon", "Ron")
@@ -54,7 +58,7 @@ public class SessionFactoryUtil {
 	}
 
 	static void Ejercicio4_1(Session s) {
-		System.out.println("Ejercicio 4_1: ");
+		System.out.println("\nEjercicio 4_1: ");
 		ScrollableResults sc = s.createQuery("from Person p inner join p.courses_1 c inner join c.person p2  where c.name = 'Potions' and p.house.name = 'Gryffindor'").scroll();
 		while (sc.next()) {
 			Person p = (Person) sc.get(0);
@@ -68,7 +72,7 @@ public class SessionFactoryUtil {
 
 	}
 	static void Ejercicio4_2(Session s) {
-		System.out.println("Ejercicio 4_2: ");
+		System.out.println("\nEjercicio 4_2: ");
 		Query q = s.createQuery("from Person p join fetch p.courses_1 c join fetch c.person p2  where c.name = 'Potions' and p.house.name = 'Gryffindor'");
 		List<Person> personas =  q.getResultList();
 		for(Person p: personas)
